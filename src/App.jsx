@@ -17,6 +17,7 @@ function App() {
   figlet.parseFont("Slant", slant);
 
   const inputRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
 
@@ -30,7 +31,7 @@ function App() {
 
 
     figlet.text(
-      "John Daniel Tejero",
+      "Name",
       {
         font: "Slant",
       },
@@ -53,11 +54,8 @@ function App() {
 
   const onSubmit = (data) => {
     event.preventDefault();
-
-    setHistory([...history, {
-      type: "input",
-      value: data
-    }]);
+    if(data.trim().length == 0) return;
+    setHistory([...history, data]);
 
     setUserInput("");
   }
@@ -80,9 +78,15 @@ function App() {
     }
   }, [isLoading]);
 
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    }
+  }, [history]);
   
   return (
-    <div className="bg-primary w-[100vw] h-[100vh] p-4 overflow-y-auto overflow-x-hidden text-background font-consolas">
+    <div className="bg-primary w-[100vw] h-[100vh] p-4 overflow-y-auto overflow-x-hidden text-background font-consolas"
+      ref={containerRef}>
       {isLoading ? (
         <div className="w-full rounded-lg">
           loading profile please wait {frames[frameIndex]}
@@ -96,11 +100,28 @@ function App() {
             <span className="text-green-400 italic font-bold">'help'</span> to
             view a list of available commands.
           </div>
+          
+          {
+            history.map((e) => {
+              return (
+                <>
+                  <div className="w-full flex flex-row items-center gap-1">
+                    <span className="text-white">{">"}</span>
+                    <span>{e}</span>
+                  </div>
+                  {
+                    e == "tite" &&
+                    <div>tite mo malaki</div>
+                  }
+                </>
+              );
+            })
+          }
           <div className="w-full flex flex-row items-center gap-1">
             <span className="text-white">{">"}</span>
             <input
               ref={inputRef}
-              className="w-full bg-inherit p-1 cursor-text focus:outline-none"
+              className="w-full bg-inherit cursor-text focus:outline-none"
               value={userInput}
               onInput={(e) => setUserInput(e.target.value)}
               onKeyDown={handleKeyDown}
