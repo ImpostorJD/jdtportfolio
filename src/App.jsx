@@ -2,6 +2,7 @@ import './App.css'
 import { useState, useEffect, useRef } from "react";
 import figlet from "figlet";
 import slant from "figlet/importable-fonts/Slant.js";
+import Commands from './utils/commands';
 
 function App() {
   
@@ -31,7 +32,7 @@ function App() {
 
 
     figlet.text(
-      "Name",
+      "John Daniel Tejero",
       {
         font: "Slant",
       },
@@ -53,10 +54,12 @@ function App() {
   }, [frames.length]);
 
   const onSubmit = (data) => {
-    event.preventDefault();
     if(data.trim().length == 0) return;
-    setHistory([...history, data]);
-
+    if(data == "clear"){
+      setHistory([]);
+    }else{
+      setHistory([...history, data]);
+    }
     setUserInput("");
   }
   
@@ -95,6 +98,7 @@ function App() {
         <>
           <pre>{header}</pre>
           <div>Pleased to have you here. I am John Daniel Tejero.</div>
+          <div>I am currently looking for an on-the-job training opportunity.</div>
           <div>
             Type{" "}
             <span className="text-green-400 italic font-bold">'help'</span> to
@@ -109,10 +113,7 @@ function App() {
                     <span className="text-white">{">"}</span>
                     <span>{e}</span>
                   </div>
-                  {
-                    e == "tite" &&
-                    <div>tite mo malaki</div>
-                  }
+                  <Commands input = {e}/>
                 </>
               );
             })
