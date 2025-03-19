@@ -109,7 +109,8 @@ export const skills = [
         { name: "Liferay", proficient: false },
         { name: "Wordpress", proficient: false },
         { name: "Figma", proficient: false },
-        { name: "Penpot", proficient: false }
+        { name: "Penpot", proficient: false },
+        { name: "Github", proficient: false },
       ]
     }
   ];
