@@ -36,12 +36,12 @@ export default function Commands({input}){
                                 - See what I have made.
                             </span>
                         </div>
-                        <div className="flex flex-col w-full gap-1">
+                        {/* <div className="flex flex-col w-full gap-1">
                             <span className="font-extrabold text-white w-full block">show-ui</span>
                             <span className="ms-10 w-full block">
                                 - Disables the CLI and shows you the GUI.
                             </span>
-                        </div>
+                        </div> */}
                         <div className="flex flex-col w-full gap-1">
                             <span className="font-extrabold text-white w-full block">clear</span>
                             <span className="ms-10 w-full block">
