@@ -111,8 +111,11 @@ export default function Commands({input}){
                             {project.title}
                         </a>
                         <div>:</div>
-                        <div className="w-[60%]">
+                        <div className="w-[50%]">
                             {project.description}
+                        </div>
+                        <div className="w-[30%]">
+                            {project.stack}
                         </div>
                     </div>
                 ))}
